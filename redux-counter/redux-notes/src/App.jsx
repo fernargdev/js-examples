@@ -26,7 +26,7 @@ const App = () => {
       </form>
 
       <ul>
-        {notes.getState().map((note) => (
+        {notes.map((note) => (
           <li key={note.id} onClick={() => toggleImportance(note.id)}>
             {note.content} <strong>{note.important ? 'important' : ''}</strong>
           </li>
