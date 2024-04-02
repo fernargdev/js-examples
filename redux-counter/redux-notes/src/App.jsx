@@ -18,26 +18,6 @@ store.dispatch({
   },
 })
 
-const createNote = (content) => {
-  return {
-    type: 'NEW_NOTE',
-    payload: {
-      content,
-      important: false,
-      id: generateId(),
-    },
-  }
-}
-
-const toggleImportanceOf = (id) => {
-  return {
-    type: 'TOGGLE_IMPORTANCE',
-    payload: { id },
-  }
-}
-
-const generateId = () => Number((Math.random() * 10000000).toFixed(0))
-
 const App = () => {
   const addNote = (event) => {
     event.preventDefault()
@@ -67,4 +47,5 @@ const App = () => {
     </div>
   )
 }
+
 export default App
