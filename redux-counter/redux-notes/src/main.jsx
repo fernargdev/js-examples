@@ -25,6 +25,24 @@ store.dispatch({
   },
 })
 
+const createNote = (content) => {
+  return {
+    type: 'NEW_NOTE',
+    payload: {
+      content,
+      important: false,
+      id: generateId(),
+    },
+  }
+}
+
+const toggleImportanceOf = (id) => {
+  return {
+    type: 'TOGGLE_IMPORTANCE',
+    payload: { id },
+  }
+}
+
 const generateId = () => Number((Math.random() * 10000000).toFixed(0))
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -33,21 +51,11 @@ const App = () => {
     event.preventDefault()
     const content = event.target.note.value
     event.target.note.value = ''
-    store.dispatch({
-      type: 'NEW_NOTE',
-      payload: {
-        content,
-        important: false,
-        id: generateId(),
-      },
-    })
+    store.dispatch(createNote(content))
   }
 
   const toggleImportance = (id) => {
-    store.dispatch({
-      type: 'TOGGLE_IMPORTANCE',
-      payload: { id },
-    })
+    store.dispatch(toggleImportanceOf(id))
   }
 
   return (
