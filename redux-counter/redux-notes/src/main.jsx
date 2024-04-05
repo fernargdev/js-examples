@@ -14,15 +14,6 @@ const reducer = combineReducers({
 })
 
 const store = createStore(reducer)
-console.log(store.getState())
-
-// Simulation
-// import { createNote } from './reducers/noteReducer'
-// import { filterChange } from './reducers/filterReducer'
-
-// store.subscribe(() => console.log(store.getState()))
-// store.dispatch(filterChange('IMPORTANT'))
-// store.dispatch(createNote('New note'))
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
