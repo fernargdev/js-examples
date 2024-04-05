@@ -12,24 +12,24 @@ const App = () => {
       <NewNote />
 
       <div>
-        all{' '}
         <input
           type="radio"
           name="filter"
           onChange={() => filterSelected('ALL')}
         />
-        important{' '}
+        all{' '}
         <input
           type="radio"
           name="filter"
           onChange={() => filterSelected('IMPORTANT')}
         />
-        nonimportant{' '}
+        important{' '}
         <input
           type="radio"
           name="filter"
           onChange={() => filterSelected('NONIMPORTANT')}
         />
+        nonimportant{' '}
       </div>
 
       <Notes />
