@@ -2,9 +2,8 @@ import './App.css'
 
 import { useEffect } from 'react'
 
-import noteService from './sevices/notes'
-import { setNotes } from './reducers/noteReducer'
 import { useDispatch } from 'react-redux'
+import { initializeNotes } from './reducers/noteReducer'
 
 import NewNote from './components/NewNote'
 import Notes from './components/Notes'
@@ -14,7 +13,7 @@ const App = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    noteService.getAll().then((notes) => dispatch(setNotes(notes)))
+    dispatch(initializeNotes())
   }, [])
 
   return (
