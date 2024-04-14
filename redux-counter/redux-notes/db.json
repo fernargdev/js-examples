@@ -3,12 +3,27 @@
     {
       "content": "the app state is in redux store",
       "important": true,
-      "id": 1
+      "id": "1"
     },
     {
       "content": "state changes are made with actions",
       "important": false,
-      "id": 2
+      "id": "2"
+    },
+    {
+      "id": "c5bd",
+      "content": "Test-1",
+      "important": false
+    },
+    {
+      "id": "44e2",
+      "content": "Test-2",
+      "important": false
+    },
+    {
+      "id": "2aeb",
+      "content": "Test-3",
+      "important": false
     }
   ]
 }
