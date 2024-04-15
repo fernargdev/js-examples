@@ -2,7 +2,7 @@ import './styles/index.css'
 import './styles/App.css'
 
 import { useQueryClient, useMutation, useQuery } from '@tanstack/react-query'
-import { createNote, getNotes } from './requests'
+import { createNote, getNotes, updateNote } from './requests'
 
 const App = () => {
   const queryClient = useQueryClient()
@@ -21,8 +21,15 @@ const App = () => {
     newNoteMutation.mutate({ content, important: false })
   }
 
+  const updateNoteMutation = useMutation({
+    mutationFn: updateNote,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['notes'] })
+    },
+  })
+
   const toggleImportance = (note) => {
-    console.log('toggle importance of', note.id)
+    updateNoteMutation.mutate({ ...note, important: !note.important })
   }
 
   const result = useQuery({
@@ -30,7 +37,7 @@ const App = () => {
     queryFn: getNotes,
   })
 
-  console.log(JSON.parse(JSON.stringify(result)))
+  // console.log(JSON.parse(JSON.stringify(result)))
 
   if (result.isLoading) return <div>Loading data...</div>
 
