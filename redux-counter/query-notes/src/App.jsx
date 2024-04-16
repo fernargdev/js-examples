@@ -24,8 +24,13 @@ const App = () => {
 
   const updateNoteMutation = useMutation({
     mutationFn: updateNote,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['notes'] })
+    onSuccess: (newNote) => {
+      const notes = queryClient.getQueryData(['notes'])
+      const updatedNotes = notes.map((note) => {
+        if (note.id === newNote.id) return newNote
+        return note
+      })
+      queryClient.setQueryData(['notes'], updatedNotes)
     },
   })
 
@@ -38,7 +43,7 @@ const App = () => {
     queryFn: getNotes,
   })
 
-  // console.log(JSON.parse(JSON.stringify(result)))
+  console.log(JSON.parse(JSON.stringify(result)))
 
   if (result.isLoading) return <div>Loading data...</div>
 
