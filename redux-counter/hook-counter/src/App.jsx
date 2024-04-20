@@ -1,13 +1,19 @@
 /* eslint-disable react/prop-types */
 import './App.css'
 
-import { useReducer } from 'react'
+import CounterContext from './CounterContext'
 
-const Display = ({ counter }) => {
+import { useReducer } from 'react'
+import { useContext } from 'react'
+
+const Display = () => {
+  const [counter] = useContext(CounterContext)
   return <div>{counter}</div>
 }
 
-const Button = ({ dispatch, type, label }) => {
+const Button = ({ type, label }) => {
+  // eslint-disable-next-line no-unused-vars
+  const [counter, dispatch] = useContext(CounterContext)
   return <button onClick={() => dispatch({ type })}>{label}</button>
 }
 
@@ -28,14 +34,14 @@ const App = () => {
   const [counter, counterDispatch] = useReducer(counterReducer, 0)
 
   return (
-    <div>
-      <Display counter={counter} />
+    <CounterContext.Provider value={[counter, counterDispatch]}>
+      <Display />
       <div>
-        <Button dispatch={counterDispatch} type="INC" label="+" />
-        <Button dispatch={counterDispatch} type="DEC" label="-" />
-        <Button dispatch={counterDispatch} type="ZERO" label="0" />
+        <Button type="INC" label="+" />
+        <Button type="DEC" label="-" />
+        <Button type="ZERO" label="0" />
       </div>
-    </div>
+    </CounterContext.Provider>
   )
 }
 
