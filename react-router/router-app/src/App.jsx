@@ -1,34 +1,67 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import './index.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+import { useState } from 'react'
+
+const Home = () => (
+  <div>
+    {' '}
+    <h2>TKTL notes app</h2>{' '}
+  </div>
+)
+
+const Notes = () => (
+  <div>
+    {' '}
+    <h2>Notes</h2>{' '}
+  </div>
+)
+
+const Users = () => (
+  <div>
+    {' '}
+    <h2>Users</h2>{' '}
+  </div>
+)
+
+const App = () => {
+  const [page, setPage] = useState('home')
+
+  const toPage = (page) => (event) => {
+    event.preventDefault()
+    setPage(page)
+  }
+
+  const content = () => {
+    if (page === 'home') {
+      return <Home />
+    } else if (page === 'notes') {
+      return <Notes />
+    } else if (page === 'users') {
+      return <Users />
+    }
+  }
+
+  const padding = {
+    padding: 5,
+  }
 
   return (
-    <>
+    <div>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
+        <a href="" onClick={toPage('home')} style={padding}>
+          home
         </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
+        <a href="" onClick={toPage('notes')} style={padding}>
+          notes
+        </a>
+        <a href="" onClick={toPage('users')} style={padding}>
+          users
         </a>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+
+      {content()}
+    </div>
   )
 }
 
