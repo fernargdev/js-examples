@@ -19,8 +19,6 @@ import {
   useNavigate,
 } from 'react-router-dom'
 
-import React from 'react'
-
 const Home = () => (
   <div>
     <h2>TKTL notes app</h2>
@@ -174,8 +172,4 @@ const App = () => {
   )
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-)
+ReactDOM.createRoot(document.getElementById('root')).render(<App />)
