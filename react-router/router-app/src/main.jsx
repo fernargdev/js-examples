@@ -15,8 +15,8 @@ import {
   Route,
   Link,
   Navigate,
-  useParams,
   useNavigate,
+  useMatch,
 } from 'react-router-dom'
 
 const Home = () => (
@@ -36,9 +36,7 @@ const Home = () => (
   </div>
 )
 
-const Note = ({ notes }) => {
-  const id = useParams().id
-  const note = notes.find((n) => n.id === Number(id))
+const Note = ({ note }) => {
   return (
     <div>
       <h2>{note.content}</h2>
@@ -131,39 +129,42 @@ const App = () => {
     padding: 5,
   }
 
+  const match = useMatch('/notes/:id')
+  const note = match
+    ? notes.find((note) => note.id === Number(match.params.id))
+    : null
+
   return (
     <div>
-      <Router>
-        <div>
-          <Link style={padding} to="/">
-            home
+      <div>
+        <Link style={padding} to="/">
+          home
+        </Link>
+        <Link style={padding} to="/notes">
+          notes
+        </Link>
+        <Link style={padding} to="/users">
+          users
+        </Link>
+        {user ? (
+          <em>{user} logged in</em>
+        ) : (
+          <Link style={padding} to="/login">
+            login
           </Link>
-          <Link style={padding} to="/notes">
-            notes
-          </Link>
-          <Link style={padding} to="/users">
-            users
-          </Link>
-          {user ? (
-            <em>{user} logged in</em>
-          ) : (
-            <Link style={padding} to="/login">
-              login
-            </Link>
-          )}
-        </div>
+        )}
+      </div>
 
-        <Routes>
-          <Route path="/notes/:id" element={<Note notes={notes} />} />
-          <Route path="/notes" element={<Notes notes={notes} />} />
-          <Route
-            path="/users"
-            element={user ? <Users /> : <Navigate replace to="/login" />}
-          />
-          <Route path="/login" element={<Login onLogin={login} />} />
-          <Route path="/" element={<Home />} />
-        </Routes>
-      </Router>
+      <Routes>
+        <Route path="/notes/:id" element={<Note note={note} />} />
+        <Route path="/notes" element={<Notes notes={notes} />} />
+        <Route
+          path="/users"
+          element={user ? <Users /> : <Navigate replace to="/login" />}
+        />
+        <Route path="/login" element={<Login onLogin={login} />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
       <div>
         <br />
         <em>Note app, Department of Computer Science 2023</em>
@@ -172,4 +173,8 @@ const App = () => {
   )
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <Router>
+    <App />
+  </Router>
+)
