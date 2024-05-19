@@ -47,7 +47,7 @@ const App = () => {
 
   const name = useField('text')
   const born = useField('date')
-  const heig = useField('number')
+  const height = useField('number')
 
   return (
     <div className="apps">
@@ -73,18 +73,18 @@ const App = () => {
         <h2>Form App</h2>
         <form>
           name:{'  '}
-          <input type={name.type} value={name.value} onChange={name.onChange} />
+          <input {...name} />
           <br />
-          born:{'  '}
-          <input type={born.type} value={born.value} onChange={born.onChange} />
+          birthdate:{'  '}
+          <input {...born} />
           <br />
           height:{'  '}
-          <input type={heig.type} value={heig.value} onChange={heig.onChange} />
+          <input {...height} />
         </form>
         <div>
           Name: {name.value} <br />
-          Born: {born.value} <br />
-          height: {heig.value}
+          Birthdate: {born.value} <br />
+          Height: {height.value}
         </div>
       </div>
     </div>
