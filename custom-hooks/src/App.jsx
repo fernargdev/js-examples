@@ -25,15 +25,29 @@ const useCounter = () => {
   }
 }
 
+const useField = (type) => {
+  const [value, setValue] = useState('')
+
+  const onChange = (event) => {
+    setValue(event.target.value)
+  }
+
+  return {
+    type,
+    value,
+    onChange,
+  }
+}
+
 const App = () => {
   const counter = useCounter()
 
   const left = useCounter()
   const right = useCounter()
 
-  const [name, setName] = useState('')
-  const [born, setBorn] = useState('')
-  const [height, setHeight] = useState('')
+  const name = useField('text')
+  const born = useField('date')
+  const heig = useField('number')
 
   return (
     <div className="apps">
@@ -59,30 +73,18 @@ const App = () => {
         <h2>Form App</h2>
         <form>
           name:{'  '}
-          <input
-            type="text"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-          />
+          <input type={name.type} value={name.value} onChange={name.onChange} />
           <br />
           born:{'  '}
-          <input
-            type="date"
-            value={born}
-            onChange={(event) => setBorn(event.target.value)}
-          />
+          <input type={born.type} value={born.value} onChange={born.onChange} />
           <br />
           height:{'  '}
-          <input
-            type="number"
-            value={height}
-            onChange={(event) => setHeight(event.target.value)}
-          />
+          <input type={heig.type} value={heig.value} onChange={heig.onChange} />
         </form>
         <div>
-          Name: {name} <br />
-          Born: {born} <br />
-          height: {height}
+          Name: {name.value} <br />
+          Born: {born.value} <br />
+          height: {heig.value}
         </div>
       </div>
     </div>
