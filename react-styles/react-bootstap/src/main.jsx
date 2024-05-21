@@ -17,7 +17,7 @@ import {
   useMatch,
 } from 'react-router-dom'
 
-import { Alert, Button, Form, Table } from 'react-bootstrap'
+import { Alert, Button, Form, Nav, Navbar, Table } from 'react-bootstrap'
 
 const Home = () => (
   <div>
@@ -154,7 +154,8 @@ const App = () => {
   return (
     <div className="container">
       {message && <Alert variant="success">{message}</Alert>}
-      <div>
+
+      {/* <div>
         <Link style={padding} to="/">
           home
         </Link>
@@ -171,7 +172,40 @@ const App = () => {
             login
           </Link>
         )}
-      </div>
+      </div> */}
+
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="#" as="span">
+              <Link style={padding} to="/">
+                home
+              </Link>
+            </Nav.Link>
+            <Nav.Link href="#" as="span">
+              <Link style={padding} to="/notes">
+                notes
+              </Link>
+            </Nav.Link>
+            <Nav.Link href="#" as="span">
+              <Link style={padding} to="/users">
+                users
+              </Link>
+            </Nav.Link>
+            <Nav.Link href="#" as="span">
+              {user ? (
+                <em style={padding}>{user} logged in</em>
+              ) : (
+                <Link style={padding} to="/login">
+                  login
+                </Link>
+              )}
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+
       <Routes>
         <Route path="/notes/:id" element={<Note note={note} />} />
         <Route path="/notes" element={<Notes notes={notes} />} />
@@ -182,6 +216,7 @@ const App = () => {
         <Route path="/login" element={<Login onLogin={login} />} />
         <Route path="/" element={<Home />} />
       </Routes>
+
       <div>
         <br />
         <em>Note app, Department of Computer Science 2022</em>
