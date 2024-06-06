@@ -19,6 +19,8 @@ import {
 
 import { Alert, Button, Form, Nav, Navbar, Table } from 'react-bootstrap'
 
+import { Container } from '@mui/material'
+
 const Home = () => (
   <div>
     <h2>TKTL notes app</h2>
@@ -152,27 +154,9 @@ const App = () => {
   }
 
   return (
-    <div className="container">
+    // <div className="container">
+    <Container>
       {message && <Alert variant="success">{message}</Alert>}
-
-      {/* <div>
-        <Link style={padding} to="/">
-          home
-        </Link>
-        <Link style={padding} to="/notes">
-          notes
-        </Link>
-        <Link style={padding} to="/users">
-          users
-        </Link>
-        {user ? (
-          <em>{user} logged in</em>
-        ) : (
-          <Link style={padding} to="/login">
-            login
-          </Link>
-        )}
-      </div> */}
 
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -221,7 +205,8 @@ const App = () => {
         <br />
         <em>Note app, Department of Computer Science 2022</em>
       </div>
-    </div>
+    </Container>
+    // </div>
   )
 }
 
