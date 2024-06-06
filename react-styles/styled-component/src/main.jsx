@@ -17,7 +17,22 @@ import {
   useMatch,
 } from 'react-router-dom'
 
-import { Alert, Button, Form, Nav, Navbar, Table } from 'react-bootstrap'
+import { Alert, Form, Nav, Navbar, Table } from 'react-bootstrap'
+
+import styled from 'styled-components'
+
+const Button = styled.button`
+  background: Bisque;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid Chocolate;
+  border-radius: 3px;
+`
+
+const Input = styled.input`
+  margin: 0.25em;
+`
 
 const Home = () => (
   <div>
@@ -89,21 +104,19 @@ const Login = (props) => {
   return (
     <div>
       <h2>login</h2>
-      <Form onSubmit={onSubmit}>
-        <Form.Group>
-          <Form.Label>username:</Form.Label>
-          <Form.Control type="text" name="username" />
-        </Form.Group>
-
-        <Form.Group>
-          <Form.Label>password:</Form.Label>
-          <Form.Control type="password" />
-        </Form.Group>
-
-        <Button variant="primary" type="submit">
+      <form onSubmit={onSubmit}>
+        <div>
+          username:
+          <Input />
+        </div>
+        <div>
+          password:
+          <Input type="password" />
+        </div>
+        <Button type="submit" primary="">
           login
         </Button>
-      </Form>
+      </form>
     </div>
   )
 }
