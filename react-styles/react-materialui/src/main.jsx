@@ -17,7 +17,7 @@ import {
   useMatch,
 } from 'react-router-dom'
 
-import { Alert, Button, Form, Nav, Navbar, Table } from 'react-bootstrap'
+import { Alert, Form, Nav, Navbar, Table } from 'react-bootstrap'
 
 import {
   Container,
@@ -26,6 +26,8 @@ import {
   TableContainer,
   TableRow,
   Paper,
+  TextField,
+  Button,
 } from '@mui/material'
 
 const Home = () => (
@@ -76,18 +78,6 @@ const Notes = ({ notes }) => (
         </TableBody>
       </Table>
     </TableContainer>
-    {/* <Table striped>
-      <tbody>
-        {notes.map((note) => (
-          <tr key={note.id}>
-            <td>
-              <Link to={`/notes/${note.id}`}>{note.content}</Link>
-            </td>
-            <td>{note.user}</td>
-          </tr>
-        ))}
-      </tbody>
-    </Table> */}
   </div>
 )
 
@@ -114,21 +104,19 @@ const Login = (props) => {
   return (
     <div>
       <h2>login</h2>
-      <Form onSubmit={onSubmit}>
-        <Form.Group>
-          <Form.Label>username:</Form.Label>
-          <Form.Control type="text" name="username" />
-        </Form.Group>
-
-        <Form.Group>
-          <Form.Label>password:</Form.Label>
-          <Form.Control type="password" />
-        </Form.Group>
-
-        <Button variant="primary" type="submit">
-          login
-        </Button>
-      </Form>
+      <form onSubmit={onSubmit}>
+        <div>
+          <TextField label="username" />
+        </div>
+        <div>
+          <TextField label="password" type="password" />
+        </div>
+        <div>
+          <Button variant="contained" color="primary" type="submit">
+            login
+          </Button>
+        </div>
+      </form>
     </div>
   )
 }
