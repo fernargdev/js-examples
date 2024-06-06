@@ -5,20 +5,15 @@
 
 import ReactDOM from 'react-dom/client'
 import { useState } from 'react'
-
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Link,
   Navigate,
-  useParams,
   useNavigate,
   useMatch,
 } from 'react-router-dom'
-
-import { Table } from 'react-bootstrap'
-
 import {
   Container,
   TableBody,
@@ -31,7 +26,7 @@ import {
   Alert,
   AppBar,
   Toolbar,
-  IconButton,
+  Table,
 } from '@mui/material'
 
 const Home = () => (
@@ -164,12 +159,7 @@ const App = () => {
     }, 10000)
   }
 
-  const padding = {
-    padding: 5,
-  }
-
   return (
-    // <div className="container">
     <Container>
       <div>{message && <Alert severity="success">{message}</Alert>}</div>
 
@@ -210,7 +200,6 @@ const App = () => {
         <em>Note app, Department of Computer Science 2022</em>
       </div>
     </Container>
-    // </div>
   )
 }
 
