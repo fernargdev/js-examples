@@ -7,13 +7,14 @@ const config = () => {
       path: path.resolve(__dirname, 'build'),
       filename: 'main.js',
     },
+
     module: {
       rules: [
         {
           test: /\.js$/,
           loader: 'babel-loader',
           options: {
-            presents: ['@babel/present-react'],
+            presets: ['@babel/preset-react'],
           },
         },
       ],
