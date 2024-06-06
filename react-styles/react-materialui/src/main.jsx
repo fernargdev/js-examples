@@ -17,7 +17,7 @@ import {
   useMatch,
 } from 'react-router-dom'
 
-import { Alert, Form, Nav, Navbar, Table } from 'react-bootstrap'
+import { Nav, Navbar, Table } from 'react-bootstrap'
 
 import {
   Container,
@@ -28,6 +28,7 @@ import {
   Paper,
   TextField,
   Button,
+  Alert,
 } from '@mui/material'
 
 const Home = () => (
@@ -167,7 +168,7 @@ const App = () => {
   return (
     // <div className="container">
     <Container>
-      {message && <Alert variant="success">{message}</Alert>}
+      <div>{message && <Alert severity="success">{message}</Alert>}</div>
 
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
