@@ -19,7 +19,14 @@ import {
 
 import { Alert, Button, Form, Nav, Navbar, Table } from 'react-bootstrap'
 
-import { Container } from '@mui/material'
+import {
+  Container,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+  Paper,
+} from '@mui/material'
 
 const Home = () => (
   <div>
@@ -53,7 +60,23 @@ const Note = ({ note }) => {
 const Notes = ({ notes }) => (
   <div>
     <h2>Notes</h2>
-    <Table striped>
+
+    <TableContainer component={Paper}>
+      <Table>
+        <TableBody>
+          {notes.map((note) => (
+            <TableRow key={note.id}>
+              <TableCell>
+                <Link to={`/notes/${note.id}`}>{note.content}</Link>
+              </TableCell>
+
+              <TableCell>{note.user}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+    {/* <Table striped>
       <tbody>
         {notes.map((note) => (
           <tr key={note.id}>
@@ -64,7 +87,7 @@ const Notes = ({ notes }) => (
           </tr>
         ))}
       </tbody>
-    </Table>
+    </Table> */}
   </div>
 )
 
