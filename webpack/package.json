@@ -5,7 +5,8 @@
   "scripts": {
     "build": "webpack --mode=production",
     "start": "webpack serve --mode=development",
-    "server": " npx json-server --watch db.json --port 3001"
+    "server": " npx json-server --watch db.json --port 3001",
+    "server2": " npx json-server --watch db2.json --port 3002"
   },
   "license": "MIT",
   "devDependencies": {

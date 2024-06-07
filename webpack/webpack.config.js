@@ -6,7 +6,7 @@ const config = (env, argv) => {
 
   const backend_url =
     argv.mode === 'production'
-      ? 'https://notes2023.fly.dev/api/notes'
+      ? 'http://localhost:3002/notes'
       : 'http://localhost:3001/notes'
 
   return {
